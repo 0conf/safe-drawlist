@@ -1,35 +1,35 @@
-class SafeSwap {
-public:
+class SafeDrawlistSwap {
+	public:
 
-  void Render()
-  {
-    std::unique_lock<std::shared_mutex> lock(this->m_Mutex);
-    ImGui_ImplDX11_RenderDrawData(&this->m_TempData);
-  }
+		void Render()
+		{
+			std::unique_lock<std::shared_mutex> lock(this->m_Mutex);
+			ImGui_ImplDX11_RenderDrawData(&this->m_TempData);
+		}
 
-  void Swap(const ImDrawData* Data)
-  {
-    std::unique_lock<std::shared_mutex> lock(this->DrawMutex);
-    if (m_TempData.CmdLists != nullptr) {
-      
-      for (int i = 0; i < m_TempData.CmdListsCount; i++) 
-      {
-        delete m_TempData.CmdLists[i];
-      }
+		void Swap(const ImDrawData* Data)
+		{
+			std::unique_lock<std::shared_mutex> lock(this->m_Mutex);
+			if (m_TempData.CmdLists != nullptr) {
 
-      delete m_TempData.CmdLists;
-      m_TempData.CmdLists = nullptr;
-    }
+				for (int i = 0; i < m_TempData.CmdListsCount; i++)
+				{
+					delete m_TempData.CmdLists[i];
+				}
 
-    m_TempData.Clear();
-    m_TempData = *Data;
-    m_TempData.CmdLists = new ImDrawList * [Data->CmdListsCount];
-    for (int i = 0; i < Data->CmdListsCount; i++) {
-      m_TempData.CmdLists[i] = Data->CmdLists[i]->CloneOutput();
-    }
-  }
+				delete m_TempData.CmdLists;
+				m_TempData.CmdLists = nullptr;
+			}
 
-private:
-	std::shared_mutex m_Mutex = { };
-	ImDrawData m_TempData;
-}
+			m_TempData.Clear();
+			m_TempData = *Data;
+			m_TempData.CmdLists = new ImDrawList * [Data->CmdListsCount];
+			for (int i = 0; i < Data->CmdListsCount; i++) {
+				m_TempData.CmdLists[i] = Data->CmdLists[i]->CloneOutput();
+			}
+		}
+
+	private:
+		std::shared_mutex m_Mutex = { };
+		ImDrawData m_TempData;
+	}

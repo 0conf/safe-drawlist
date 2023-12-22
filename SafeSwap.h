@@ -3,7 +3,7 @@
 class SafeDrawlistSwap {
 public:
 	void Render();
-	void Swap(const ImDrawData* Data);
+	void Swap(const ImDrawData* data);
 private:
 	std::shared_mutex m_Mutex = { };
 	ImDrawData m_TempData;

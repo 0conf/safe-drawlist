@@ -16,7 +16,7 @@ ImGui::NewFrame();
 ImGui::EndFrame();
 ImGui::Render();
 
-Swapper->Swap(ImGui::GetDrawData());
+g_Swapper->Swap(ImGui::GetDrawData());
 ```
 
 ### Rendering Thread
@@ -24,7 +24,7 @@ Call ``SafeDrawlistSwap::Render()`` at the end of the rendering thread frame (su
 
 ```c++
 ImGui_ImplDX11_NewFrame(); // Make sure you create a new frame BEFORE you render the draw-list.
-Swapper->Render();
+g_Swapper->Render();
 
 return oPresent(pSwapChain, syncInterval, flags);
 ```

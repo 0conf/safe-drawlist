@@ -1,5 +1,7 @@
 #pragma once
 
+#include <shared_mutex>
+
 class SafeDrawlistSwap {
 public:
 	void Render();

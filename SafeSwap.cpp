@@ -9,7 +9,8 @@ void SafeDrawlistSwap::Render()
 void SafeDrawlistSwap::Swap(const ImDrawData* Data)
 {
 	std::unique_lock<std::shared_mutex> lock(this->m_Mutex);
-	if (m_TempData.CmdLists != nullptr) {
+	if (m_TempData.CmdLists != nullptr) 
+	{
 
 		for (int i = 0; i < m_TempData.CmdListsCount; i++)
 		{
@@ -23,7 +24,8 @@ void SafeDrawlistSwap::Swap(const ImDrawData* Data)
 	m_TempData.Clear();
 	m_TempData = *Data;
 	m_TempData.CmdLists = new ImDrawList * [Data->CmdListsCount];
-	for (int i = 0; i < Data->CmdListsCount; i++) {
+	for (int i = 0; i < Data->CmdListsCount; i++) 
+	{
 		m_TempData.CmdLists[i] = Data->CmdLists[i]->CloneOutput();
 	}
 }

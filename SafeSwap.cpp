@@ -6,7 +6,7 @@ void SafeDrawlistSwap::Render()
 	ImGui_ImplDX11_RenderDrawData(&this->m_TempData);
 }
 
-void SafeDrawlistSwap::Swap(const ImDrawData* Data)
+void SafeDrawlistSwap::Swap(const ImDrawData* data)
 {
 	std::unique_lock<std::shared_mutex> lock(this->m_Mutex);
 	if (m_TempData.CmdLists != nullptr) 

@@ -1,5 +1,5 @@
 # Safe Swap
-Swap an ImGui drawlist safely from one thread to another. For example, in Unreal Engine 4's game and RHI thread.
+Swap an ImGui drawlist safely from one thread to another to another.
 
 
 ## How to use (Unreal Engine 4)

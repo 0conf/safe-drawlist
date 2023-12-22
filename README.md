@@ -1,12 +1,12 @@
 # Safe Swap
-Swap an ImGui drawlist safely from one thread to another to another.
+Swap an ImGui drawlist safely from one thread to another. Such as the Unreal Engine 4 game thread and the RHI (Rendering Hardware Interface) thread. I've uploaded this to github as I tend to get questions often on how I do this with ImGui. 
 
 
 ## How to use (Unreal Engine 4)
 1. Create an instance of ``SafeDrawlistSwap``
 
 ### Game Thread
-Call ``SafeDrawlistSwap::Swap(const ImDrawData* data)`` with the draw data from ImGui. For example, ``ImGui::GetDrawData()``.
+Call ``SafeDrawlistSwap::Swap(const ImDrawData* data)`` with the draw data from ImGui. For example in this case we'll use ``ImGui::GetDrawData()``.
 Make sure this is called **last** and/or when you've done your drawing (at the end of the frame).
 ```c++
 ImGui_ImplWin32_NewFrame();

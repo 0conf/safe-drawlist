@@ -19,7 +19,7 @@ ImGui::Render();
 g_Swapper->Swap(ImGui::GetDrawData());
 ```
 
-### Rendering Thread
+### Rendering Thread (via function hook)
 Call ``SafeDrawlistSwap::Render()`` at the end of the rendering thread frame (such as your PresentScene hook...). 
 
 ```c++
